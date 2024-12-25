@@ -1,30 +1,30 @@
 package com.otsoi.playtests.pages;
 
-import com.microsoft.playwright.Page;
-import com.otsoi.playtests.blocks.HeaderBlock;
-import lombok.RequiredArgsConstructor;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
-@Component
-@RequiredArgsConstructor
-public class MainPage extends PlaywrightPageElement {
+import com.otsoi.playtests.blocks.SignInBlock;
 
-    private final RegisterPage registerPage;
-    private final String registerButton = "//*[text()='Register']";
+import lombok.RequiredArgsConstructor;
+
+@Component @RequiredArgsConstructor
+public class MainPage implements WebPage {
+    private final SignInBlock signInBlock;
+    private final String registerLink = "//a[text()='Register']";
 
     public void open() {
-        System.out.println(getPage().toString());
-        getPage().navigate("http://demowebshop.tricentis.com/");
+        getPage().navigate("https://parabank.parasoft.com/parabank/index.htm", getCustomNavigateOptions());
     }
 
-    public RegisterPage clickRegister() {
-        getPage().click(registerButton);
-        return registerPage;
+    public void clickRegister() {
+        getPage().click(registerLink);
     }
 
+    public SignInBlock getSignInBlock() {
+        return signInBlock;
+    }
 
-
-
-
+    @Override
+    public boolean isOpened() {
+        return signInBlock.isVisible();
+    }
 }

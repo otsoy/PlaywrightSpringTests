@@ -1,4 +1,4 @@
-package com.otsoi.playtests.pages;
+package com.otsoi.playtests.spring;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -18,6 +18,7 @@ public class SpringContext implements ApplicationContextAware {
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         setContext(applicationContext);
     }
+
     private static synchronized void setContext(ApplicationContext context) {
         SpringContext.context = context;
     }
