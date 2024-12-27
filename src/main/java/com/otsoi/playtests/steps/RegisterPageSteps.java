@@ -1,35 +1,37 @@
 package com.otsoi.playtests.steps;
 
-import com.otsoi.playtests.entities.TestUser;
-import com.otsoi.playtests.pages.*;
-import com.otsoi.playtests.testData.TestUserFactory;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-@Component
-@RequiredArgsConstructor
+import com.otsoi.playtests.entities.TestUser;
+import com.otsoi.playtests.pages.Logoutable;
+import com.otsoi.playtests.pages.RegisterPage;
+import com.otsoi.playtests.testData.TestUserFactory;
+
+import lombok.RequiredArgsConstructor;
+
+@Component @RequiredArgsConstructor
 public class RegisterPageSteps implements Logoutable {
     private final RegisterPage registerPage;
-    private final RegisterResultPage registerResultPage;
 
-    public PlaywrightPageElement register(TestUser user) {
-        registerPage.selectGender(user.getGender());
+    public RegisterPage register(TestUser user) {
         registerPage.enterFirstName(user.getFirstName());
         registerPage.enterLastName(user.getLastName());
-        registerPage.enterEmail(user.getEmail());
+        registerPage.enterAddress(user.getAddress());
+        registerPage.enterCity(user.getCity());
+        registerPage.enterState(user.getState());
+        registerPage.enterZipCode(user.getZipCode());
+        registerPage.enterPhone(user.getPhone());
+        registerPage.enterSsn(user.getSsn());
+        registerPage.enterUsername(user.getUsername());
         registerPage.enterPassword(user.getPassword());
-        registerPage.enterConfirmPassword(user.getPassword());
+        registerPage.enterConfirmPassword(user.getConfirmPassword());
         registerPage.clickRegister();
 
-        if (registerResultPage.isOpened())
-            return SpringContext.getBean(RegisterResultPage.class);
-        else
-            return SpringContext.getBean(RegisterPage.class);
+        return registerPage;
     }
 
-    public PlaywrightPageElement registerRandom() {
+    public RegisterPage registerRandom() {
         TestUser user = TestUserFactory.createRandom();
         return register(user);
     }
 }
-
