@@ -21,6 +21,6 @@ public interface PlaywrightPageElement {
     }
 
     default void waitForPageLoad() {
-        getPage().waitForLoadState(LoadState.LOAD); // ждет когда сеть будет неактивна
+        getPage().waitForLoadState(LoadState.LOAD);
     }
 }

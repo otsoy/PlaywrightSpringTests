@@ -5,21 +5,23 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.SimpleThreadScope;
+import org.springframework.stereotype.Component;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.microsoft.playwright.Page;
 
 import io.qameta.allure.Attachment;
 
+@Component
 public class AfterEachExtension implements AfterEachCallback {
 
     @Override
     public void afterEach(ExtensionContext context) throws Exception {
-
         ApplicationContext springContext = SpringExtension.getApplicationContext(context);
         Page page = springContext.getBean(Page.class);
-        takeScreenshot(page);
-
+        if (context.getExecutionException().isPresent()) {
+            takeScreenshot(page);
+        }
         recreatePageBean(springContext);
     }
 
@@ -40,13 +42,10 @@ public class AfterEachExtension implements AfterEachCallback {
         context.close();
         browser.close();
 
-        // Получаем текущий ThreadScope и удаляем bean
         SimpleThreadScope threadScope = (SimpleThreadScope) beanFactory.getRegisteredScope("threadScope");
         threadScope.remove("Secondary");
 
-        // Проверяем создание нового bean'а
         Page newPage = applicationContext.getBean(Page.class);
         System.out.println("New page bean created: " + newPage);
-
     }
 }

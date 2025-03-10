@@ -5,6 +5,6 @@ import com.otsoi.playtests.spring.SpringContext;
 
 public interface Logoutable {
     default void logout() {
-        SpringContext.getBean(LeftPanel.class).clickLogout();
+        SpringContext.getBean(LeftPanel.class).clickLogOut();
     }
 }
