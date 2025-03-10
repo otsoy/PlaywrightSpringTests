@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Description;
 import com.otsoi.playtests.entities.TestUser;
 import com.otsoi.playtests.extensions.AfterEachExtension;
 import com.otsoi.playtests.steps.MainPageSteps;
-import com.otsoi.playtests.steps.SignInPageSteps;
+import com.otsoi.playtests.steps.SignInSteps;
 import com.otsoi.playtests.testData.TestUserFactory;
 
 @SpringBootTest @ExtendWith(AfterEachExtension.class)
@@ -21,7 +21,7 @@ public class SignInTests {
     private MainPageSteps mainPageSteps;
 
     @Autowired
-    private SignInPageSteps signInPageSteps;
+    private SignInSteps signInPageSteps;
 
     @Test @Description("Successfully sign in")
     public void testSignIn() {

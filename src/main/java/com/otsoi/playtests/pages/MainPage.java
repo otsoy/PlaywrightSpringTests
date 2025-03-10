@@ -2,6 +2,7 @@ package com.otsoi.playtests.pages;
 
 import org.springframework.stereotype.Component;
 
+import com.otsoi.playtests.blocks.LeftPanel;
 import com.otsoi.playtests.blocks.SignInBlock;
 
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 @Component @RequiredArgsConstructor
 public class MainPage implements WebPage {
     private final SignInBlock signInBlock;
+    private final LeftPanel leftPanel;
     private final String registerLink = "//a[text()='Register']";
 
     public void open() {
@@ -21,6 +23,10 @@ public class MainPage implements WebPage {
 
     public SignInBlock getSignInBlock() {
         return signInBlock;
+    }
+
+    public LeftPanel getLeftPanel() {
+        return leftPanel;
     }
 
     @Override

@@ -8,7 +8,7 @@ import com.otsoi.playtests.pages.MainPage;
 import lombok.RequiredArgsConstructor;
 
 @Component @RequiredArgsConstructor
-public class SignInPageSteps {
+public class SignInSteps {
     private final MainPage mainPage;
 
     public MainPage signIn(TestUser user) {
