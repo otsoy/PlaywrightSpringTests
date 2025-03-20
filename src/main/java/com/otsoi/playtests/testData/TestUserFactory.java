@@ -78,6 +78,14 @@ public class TestUserFactory {
     }
 
     public static TestUser getTestUser() {
-        return TestUser.builder().username("john").password("demo").build();
+        return TestUser.builder()
+                .firstName("John")
+                .lastName("Doe")
+                .address("123 Main St")
+                .city("New York")
+                .state("NY")
+                .zipCode("10001")
+                .ssn("123-45-6789")
+                .build();
     }
 }

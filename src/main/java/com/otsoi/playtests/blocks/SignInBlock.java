@@ -12,6 +12,8 @@ public class SignInBlock implements PlaywrightPageElement {
     private final String passwordInput = "//*[@name ='password']";
     private final String signInButton = "//*[@value ='Log In']";
     private final String errorMessage = ".error";
+    private final String registerLink = "//a[text()='Register']";
+    private final String forgotPasswordLink = "//a[text()='Forgot login info?']";
 
     public void setUsername(String username) {
         getPage().fill(usernameInput, username);
@@ -31,5 +33,13 @@ public class SignInBlock implements PlaywrightPageElement {
 
     public boolean isVisible() {
         return getPage().isVisible(signInBlock);
+    }
+
+    public void clickRegister() {
+        getPage().click(registerLink);
+    }
+
+    public void clickForgotPassword() {
+        getPage().click(forgotPasswordLink);
     }
 }

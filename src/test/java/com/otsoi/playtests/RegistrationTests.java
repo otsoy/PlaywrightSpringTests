@@ -15,12 +15,13 @@ import org.springframework.context.annotation.Description;
 import com.otsoi.playtests.entities.RegistrationField;
 import com.otsoi.playtests.entities.TestUser;
 import com.otsoi.playtests.extensions.AfterEachExtension;
+import com.otsoi.playtests.extensions.TestBase;
 import com.otsoi.playtests.steps.MainPageSteps;
 import com.otsoi.playtests.steps.RegisterPageSteps;
 import com.otsoi.playtests.testData.TestUserFactory;
 
 @SpringBootTest @ExtendWith(AfterEachExtension.class)
-public class RegistrationTests {
+public class RegistrationTests extends TestBase {
     @Autowired
     private MainPageSteps mainPageSteps;
 
@@ -61,5 +62,14 @@ public class RegistrationTests {
         var resultPage = registerPageSteps.register(user);
 
         assertEquals(field + " is required.", resultPage.getFieldValidationError(), "Test User" + user);
+    }
+
+    @Test @Description("Password recovery for registered user")
+    public void testPasswordRecovery() {
+        var resultPage = mainPageSteps.navigateToPasswordRecovery();
+        resultPage.recoverPassword(currentUser);
+
+        assertEquals("Your login information was located successfully. You are now logged in. ",
+                resultPage.getSuccessMessage());
     }
 }

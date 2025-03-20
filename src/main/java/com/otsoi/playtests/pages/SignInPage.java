@@ -34,6 +34,19 @@ public class SignInPage implements WebPage {
         return getPage().isVisible(signInBlock);
     }
 
+    public void clickForgotLoginInfo() {
+        throw new RuntimeException("Not implemented");
+
+    }
+
+    public void submitRecovery() {
+        throw new RuntimeException("Not implemented");
+    }
+
+    public boolean isRecoveryEmailSent() {
+        return false;
+    }
+
     @Override
     public boolean isOpened() {
         return isSignInBlockVisible();

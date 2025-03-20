@@ -46,6 +46,6 @@ public class AfterEachExtension implements AfterEachCallback {
         threadScope.remove("Secondary");
 
         Page newPage = applicationContext.getBean(Page.class);
-        System.out.println("New page bean created: " + newPage);
+
     }
 }
