@@ -11,14 +11,9 @@ import lombok.RequiredArgsConstructor;
 public class MainPage implements WebPage {
     private final SignInBlock signInBlock;
     private final LeftPanel leftPanel;
-    private final String registerLink = "//a[text()='Register']";
 
     public void open() {
         getPage().navigate("https://parabank.parasoft.com/parabank/index.htm", getCustomNavigateOptions());
-    }
-
-    public void clickRegister() {
-        getPage().click(registerLink);
     }
 
     public SignInBlock getSignInBlock() {

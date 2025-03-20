@@ -50,9 +50,7 @@ public class UserPool {
     }
 
     public synchronized void returnUser(TestUser user) {
-        System.out.println(users.size());
 
         users.add(user);
-        System.out.println("AFTER: " + users.size());
     }
 }

@@ -16,6 +16,7 @@ public class TestUser {
     private String zipCode;
     private String phone;
     private String ssn;
+    private String email;
 
     @Override
     public String toString() {
